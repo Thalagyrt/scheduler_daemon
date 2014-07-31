@@ -135,7 +135,7 @@ module Scheduler
     end
 
     def tasks_to_run
-      task_files = Dir[File.join(%w(scheduled_tasks *.rb))]# + File.join(%w(lib scheduled_tasks *.rb))
+      task_files = Dir[File.join(%w(app/tasks/**/*.rb))]
 
       if options[:only].any?
         task_files.reject!{|f| options[:only].all?{|m| f !~ Regexp.new(Regexp.escape(m))}}
