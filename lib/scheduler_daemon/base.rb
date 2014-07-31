@@ -121,7 +121,7 @@ module Scheduler
         begin
           unless options[:only].any? && options[:only].all?{|m| f !~ Regexp.new(Regexp.escape(m)) }
             require File.expand_path("./#{f}")
-            filename = f.split('/').last.split('.').first
+            filename = f.split('/')[2..-1].join('/').split('.').first
             log "Loading task #{filename}..."
             @tasks << filename.camelcase.constantize # "path/newsfeed_task.rb" => NewsfeedTask
           end
